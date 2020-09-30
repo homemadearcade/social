@@ -99,7 +99,7 @@ class UserProfile extends Component {
             trigger={
               <div className="gallery-item">
                 <img
-                  src={`/images/post-images/thumbnail/${post.photo}`}
+                  src={post.photo}
                   className="gallery-image"
                   alt=""
                 />
@@ -160,7 +160,7 @@ class UserProfile extends Component {
               <div className="profile">
                 <div className="profile-image">
                   <img
-                    src={`/images/profile-picture/100x100/${userProfileData.data.profilePicture}`}
+                    src={userProfileData.data.profilePicture}
                     alt=""
                   />
                 </div>

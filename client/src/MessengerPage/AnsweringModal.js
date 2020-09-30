@@ -76,7 +76,6 @@ class AnsweringModal extends Component {
                 wrapped
                 size="medium"
                 src={
-                  "http://localhost:5000/images/profile-picture/" +
                   answeringModal.caller.profilePicture
                 }
               />

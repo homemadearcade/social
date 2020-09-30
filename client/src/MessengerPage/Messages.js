@@ -40,7 +40,7 @@ const MessengerMessages = ({
       return (
         <li className="replies" key={message.uuid}>
           <img
-            src={`/images/profile-picture/100x100/${profilePicture}`}
+            src={profilePicture}
             alt=""
           />
           <p
@@ -60,7 +60,7 @@ const MessengerMessages = ({
       return (
         <li className="replies">
           <img
-            src={`/images/profile-picture/100x100/${profilePicture}`}
+            src={profilePicture}
             alt=""
           />
           <Popup
@@ -79,7 +79,7 @@ const MessengerMessages = ({
       return (
         <li className="replies">
           <img
-            src={`/images/profile-picture/100x100/${profilePicture}`}
+            src={profilePicture}
             alt=""
           />
           <Popup
@@ -94,7 +94,7 @@ const MessengerMessages = ({
                   width: "40%",
                   height: "20%"
                 }}
-                src={`/images/chat-images/${message.photo}`}
+                src={message.photo}
                 alt=""
               />
             }
@@ -107,7 +107,7 @@ const MessengerMessages = ({
       return (
         <li className="sent" key={message.uuid}>
           <img
-            src={`/images/profile-picture/100x100/${currentRoom.user.profilePicture}`}
+            src={currentRoom.user.profilePicture}
             alt=""
           />
           <p
@@ -127,7 +127,7 @@ const MessengerMessages = ({
       return (
         <li className="sent">
           <img
-            src={`/images/profile-picture/100x100/${currentRoom.user.profilePicture}`}
+            src={currentRoom.user.profilePicture}
             alt=""
           />
           <Popup
@@ -147,7 +147,7 @@ const MessengerMessages = ({
       return (
         <li className="sent">
           <img
-            src={`/images/profile-picture/100x100/${currentRoom.user.profilePicture}`}
+            src={currentRoom.user.profilePicture}
             alt=""
           />
           <Popup
@@ -162,7 +162,7 @@ const MessengerMessages = ({
                   width: "40%",
                   height: "20%"
                 }}
-                src={`/images/chat-images/${message.photo}`}
+                src={message.photo}
                 alt=""
               />
             }

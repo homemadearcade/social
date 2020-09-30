@@ -16,6 +16,19 @@ const Message = mongoose.model("Message");
 const notificationHandler = require("../handlers/notificationHandler");
 const emailHandler = require("../handlers/emailHandler");
 const messageHandler = require("../handlers/messageHandler");
+const multerS3 = require('multer-s3')
+
+const AWS = require('aws-sdk'); // Requiring AWS SDK.
+
+// Configuring AWS
+AWS.config = new AWS.Config({
+  accessKeyId: process.env.S3_KEY, // stored in the .env file
+  secretAccessKey: process.env.S3_SECRET, // stored in the .env file
+  region: process.env.BUCKET_REGION // This refers to your bucket configuration.
+});
+
+// Creating a S3 instance
+const s3 = new AWS.S3();
 
 // Check File Type
 function checkFileType(file, cb) {
@@ -33,16 +46,15 @@ function checkFileType(file, cb) {
   }
 }
 
-const storage = multer.diskStorage({
-  //multers disk storage settings
-  destination: (req, file, cb) => {
-    cb(null, "./public/images/profile-picture/");
-  },
-  filename: (req, file, cb) => {
-    const ext = file.mimetype.split("/")[1];
-
-    cb(null, uuidv4() + "." + ext);
-  },
+const storage = multerS3({
+    s3,
+    bucket: process.env.BUCKET_NAME,
+    metadata: function (req, file, cb) {
+      cb(null, {fieldName: file.fieldname});
+    },
+    key: function (req, file, cb) {
+      cb(null, Date.now().toString())
+    }
 });
 
 const upload = multer({
@@ -62,45 +74,15 @@ exports.upload = (req, res, next) => {
 
     if (!req.file) return res.json({ message: "Please upload a file" });
 
-    req.body.photo = req.file.filename;
-
-    Jimp.read(req.file.path, function (err, test) {
-      if (err) throw err;
-      test
-        .resize(100, 100)
-        .quality(50)
-        .write("./public/images/profile-picture/100x100/" + req.body.photo);
-      next();
-    });
+    req.body.photo = req.file.location
+    next();
   });
 };
-
-function deleteProfilePicture({ photo }) {
-  fs.unlink("./public/images/profile-picture/" + photo, (err) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    console.log("removed");
-  });
-
-  fs.unlink("./public/images/profile-picture/100x100/" + photo, (err) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    console.log("removed");
-  });
-}
 
 exports.changeProfilePicture = (req, res) => {
   User.findById(req.userData.userId)
     .select("profilePicture")
     .then((data) => {
-      if (data.profilePicture !== "person.png") {
-        deleteProfilePicture({ photo: data.profilePicture });
-      }
-
       User.findOneAndUpdate(
         { _id: req.userData.userId },
         { profilePicture: req.body.photo },
@@ -126,7 +108,7 @@ exports.activate = (req, res) => {
     return res.status(200).header("Content-Type", "text/html")
       .send(`<!DOCTYPE html>
     <html lang="en">
-    
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -140,14 +122,14 @@ exports.activate = (req, res) => {
         </style>
         <title>social-network</title>
     </head>
-    
+
     <body>
         <div class="alert">
             <strong>Error!</strong> Disabled.
         </div>
-    
+
     </body>
-    
+
     </html>
   `);
   }
@@ -162,7 +144,7 @@ exports.activate = (req, res) => {
         return res.status(200).header("Content-Type", "text/html")
           .send(`<!DOCTYPE html>
           <html lang="en">
-      
+
           <head>
               <meta charset="utf-8">
               <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -176,14 +158,14 @@ exports.activate = (req, res) => {
               </style>
               <title>social-network</title>
           </head>
-          
+
           <body>
               <div class="alert">
                   <strong>Success!</strong> Account activated.
               </div>
-          
+
           </body>
-          
+
           </html>
           `);
       })
@@ -192,7 +174,7 @@ exports.activate = (req, res) => {
         return res.status(401).header("Content-Type", "text/html")
           .send(`<!DOCTYPE html>
           <html lang="en">
-          
+
           <head>
               <meta charset="utf-8">
               <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -206,14 +188,14 @@ exports.activate = (req, res) => {
               </style>
               <title>social-network</title>
           </head>
-          
+
           <body>
               <div class="alert">
                   <strong>Error!</strong> Something went wrong.
               </div>
-          
+
           </body>
-          
+
           </html>
         `);
       });
@@ -221,7 +203,7 @@ exports.activate = (req, res) => {
     return res.status(401).header("Content-Type", "text/html")
       .send(`<!DOCTYPE html>
       <html lang="en">
-      
+
       <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -235,14 +217,14 @@ exports.activate = (req, res) => {
           </style>
           <title>social-network</title>
       </head>
-      
+
       <body>
           <div class="alert">
               <strong>Error!</strong> Invalid token.
           </div>
-      
+
       </body>
-      
+
       </html>
     `);
   }

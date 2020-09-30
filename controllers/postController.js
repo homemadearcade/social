@@ -14,6 +14,20 @@ const linkify = require("linkifyjs");
 require("linkifyjs/plugins/hashtag")(linkify);
 require("linkifyjs/plugins/mention")(linkify);
 
+const multerS3 = require('multer-s3')
+
+const AWS = require('aws-sdk'); // Requiring AWS SDK.
+
+// Configuring AWS
+AWS.config = new AWS.Config({
+  accessKeyId: process.env.S3_KEY, // stored in the .env file
+  secretAccessKey: process.env.S3_SECRET, // stored in the .env file
+  region: process.env.BUCKET_REGION // This refers to your bucket configuration.
+});
+
+// Creating a S3 instance
+const s3 = new AWS.S3();
+
 const postLookup = [
   {
     $lookup: {
@@ -63,16 +77,15 @@ function arrayRemove(array, value) {
   });
 }
 
-const storage = multer.diskStorage({
-  //multers disk storage settings
-  destination: (req, file, cb) => {
-    cb(null, "./public/images/post-images/");
-  },
-  filename: (req, file, cb) => {
-    const ext = file.mimetype.split("/")[1];
-
-    cb(null, uuidv4() + "." + ext);
-  },
+const storage = multerS3({
+    s3,
+    bucket: process.env.BUCKET_NAME,
+    metadata: function (req, file, cb) {
+      cb(null, {fieldName: file.fieldname});
+    },
+    key: function (req, file, cb) {
+      cb(null, Date.now().toString())
+    }
 });
 
 const upload = multer({
@@ -93,15 +106,8 @@ exports.upload = async (req, res, next) => {
     if (!req.file)
       return res.status(400).json({ message: "Please upload a file" });
 
-    req.body.photo = req.file.filename;
-    Jimp.read(req.file.path, function (err, test) {
-      if (err) throw err;
-      test
-        .scaleToFit(480, Jimp.AUTO, Jimp.RESIZE_BEZIER)
-        .quality(50)
-        .write("./public/images/post-images/thumbnail/" + req.body.photo);
-      next();
-    });
+    req.body.photo = req.file.location
+    next();
   });
 };
 
@@ -552,30 +558,10 @@ exports.createPost = (req, res) => {
     });
 };
 
-function deletePostPhoto({ photo }) {
-  fs.unlink("./public/images/post-images/" + photo, (err) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    console.log("removed");
-  });
-
-  fs.unlink("./public/images/post-images/thumbnail/" + photo, (err) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    console.log("removed");
-  });
-}
-
 exports.deletePost = (req, res) => {
   Post.findOneAndDelete({ _id: req.body.postId, author: req.userData.userId })
     .then((post) => {
       if (!post) return res.status(401).json({ message: "Failed to delete" });
-
-      deletePostPhoto(post);
 
       Comment.deleteMany({
         post: mongoose.Types.ObjectId(post._id),

@@ -6,6 +6,20 @@ const messageHandler = require("../handlers/messageHandler");
 const path = require("path");
 const uuidv4 = require("uuid/v4");
 const multer = require("multer");
+const multerS3 = require('multer-s3')
+
+const AWS = require('aws-sdk'); // Requiring AWS SDK.
+
+// Configuring AWS
+AWS.config = new AWS.Config({
+  accessKeyId: process.env.S3_KEY, // stored in the .env file
+  secretAccessKey: process.env.S3_SECRET, // stored in the .env file
+  region: process.env.BUCKET_REGION // This refers to your bucket configuration.
+});
+
+// Creating a S3 instance
+const s3 = new AWS.S3();
+
 
 // Check File Type
 function checkFileType(file, cb) {
@@ -23,15 +37,15 @@ function checkFileType(file, cb) {
   }
 }
 
-const storage = multer.diskStorage({
-  //multers disk storage settings
-  destination: (req, file, cb) => {
-    cb(null, "./public/images/chat-images/");
-  },
-  filename: (req, file, cb) => {
-    const ext = file.mimetype.split("/")[1];
-    cb(null, uuidv4() + "." + ext);
-  }
+const storage = multerS3({
+    s3,
+    bucket: process.env.BUCKET_NAME,
+    metadata: function (req, file, cb) {
+      cb(null, {fieldName: file.fieldname});
+    },
+    key: function (req, file, cb) {
+      cb(null, Date.now().toString())
+    }
 });
 
 const upload = multer({
@@ -64,7 +78,7 @@ exports.upload = (req, res, next) => {
       return res.status(400).json({ message: "Please upload a file" });
     }
 
-    req.body.photo = req.file.filename;
+    req.body.photo = req.file.location
     next();
   });
 };
