@@ -62,13 +62,13 @@ class PostForm extends PureComponent {
       const canvasImage = canvas.toDataURL();
       dispatch(postActions.getCroppedSrc(canvasImage));
     };
-    //image64toCanvasRef(canvasRef, imgSrc, pixelCrop);
   };
 
   handleUpload = event => {
     event.preventDefault();
     const { imgSrc } = this.props.post;
     if (imgSrc) {
+      this.handleOnCropComplete({}, { x: 0, y: 0, width: imgSrc.width, height: imgSrc.height })
       const canvasRef = this.imagePreviewCanvasRef.current;
       const { imgSrcExt } = this.props.post;
       const imageData64 = canvasRef.toDataURL("image/" + imgSrcExt);
