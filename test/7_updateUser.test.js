@@ -20,10 +20,7 @@ describe("/api/user/updateUser", () => {
             userId: _id,
             username: user.username,
           },
-          process.env.JWT_KEY,
-          {
-            expiresIn: "30m",
-          }
+          process.env.JWT_KEY
         );
         userId = _id;
         tokenJWT = "Bearer " + token;

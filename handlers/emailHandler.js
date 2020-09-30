@@ -10,10 +10,7 @@ exports.sendVerificationEmail = (data) => {
       email,
       _id,
     },
-    process.env.JWT_KEY,
-    {
-      expiresIn: "30m",
-    }
+    process.env.JWT_KEY
   );
 
   // config for mailserver and mail, input your data

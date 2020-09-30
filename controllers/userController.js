@@ -120,7 +120,7 @@ exports.activate = (req, res) => {
                 color: white;
             }
         </style>
-        <title>social-network</title>
+        <title>friends-only</title>
     </head>
 
     <body>
@@ -156,7 +156,7 @@ exports.activate = (req, res) => {
                       color: white;
                   }
               </style>
-              <title>social-network</title>
+              <title>friends-only</title>
           </head>
 
           <body>
@@ -186,7 +186,7 @@ exports.activate = (req, res) => {
                       color: white;
                   }
               </style>
-              <title>social-network</title>
+              <title>friends-only</title>
           </head>
 
           <body>
@@ -215,7 +215,7 @@ exports.activate = (req, res) => {
                   color: white;
               }
           </style>
-          <title>social-network</title>
+          <title>friends-only</title>
       </head>
 
       <body>
@@ -367,10 +367,7 @@ exports.loginUser = (req, res, next) => {
                 userId: users[0]._id,
                 username: users[0].username,
               },
-              process.env.JWT_KEY,
-              {
-                expiresIn: "30m",
-              }
+              process.env.JWT_KEY
             );
 
             const user = {
@@ -445,10 +442,7 @@ exports.updateUser = (req, res) => {
                 userId: user._id,
                 username: user.username,
               },
-              process.env.JWT_KEY,
-              {
-                expiresIn: "30m",
-              }
+              process.env.JWT_KEY
             );
 
             return res.status(200).json({ user, token: "Bearer " + token });

@@ -21,9 +21,6 @@ describe("/api/user/getUserData", () => {
             username: user.username,
           },
           process.env.JWT_KEY,
-          {
-            expiresIn: "30m",
-          }
         );
 
         tokenJWT = "Bearer " + token;

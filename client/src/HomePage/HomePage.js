@@ -5,7 +5,7 @@ import { NewUsersList } from "../components/NewUsersLIst";
 
 class HomePage extends Component {
   componentDidMount = () => {
-    document.title = "social-network";
+    document.title = "friends-only";
   };
 
   render() {

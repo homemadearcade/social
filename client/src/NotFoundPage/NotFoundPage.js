@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class NotFoundPage extends Component {
   componentDidMount = () => {
-    document.title = "Page not found | social-network";
+    document.title = "Page not found | friends-only";
   };
 
   render() {

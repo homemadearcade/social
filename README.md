@@ -1,10 +1,10 @@
-# social-network
+# friends-only
 
 Mini social network that I made as my first MERN stack project.
 
 ## Demo
 
-[social-network](https://social-network.site/login)
+[friends-only](https://friends-only.site/login)
 
 ## Screenshots
 

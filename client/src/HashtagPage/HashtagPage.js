@@ -20,7 +20,7 @@ class HashtagPage extends Component {
         })
       );
     }
-    document.title = "Hashtag Page | social-network";
+    document.title = "Hashtag Page | friends-only";
   };
 
   fetchData = () => {
