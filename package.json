@@ -10,7 +10,6 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "cd client/ && npm install && npm run build"
   },
-  "homepage" : "http://hah-nan.github.io/hasocial",
   "dependencies": {
     "@hapi/joi": "^16.1.8",
     "bcryptjs": "^2.4.3",

@@ -2,7 +2,6 @@
   "name": "social-network-client",
   "version": "0.1.0",
   "license": "ISC",
-  "homepage" : "http://hah-nan.github.io/hasocial",
   "dependencies": {
     "autosuggest-highlight": "^3.1.1",
     "axios": "^0.18.0",
