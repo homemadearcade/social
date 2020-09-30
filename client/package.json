@@ -2,6 +2,7 @@
   "name": "social-network-client",
   "version": "0.1.0",
   "license": "ISC",
+  "homepage" : "http://hah-nan.github.io/hasocial",
   "dependencies": {
     "autosuggest-highlight": "^3.1.1",
     "axios": "^0.18.0",
@@ -40,10 +41,12 @@
     "uuid": "^3.3.3"
   },
   "scripts": {
-    "start": "react-scripts start",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "git push heroku master",
+    "start": "react-scripts start"
   },
   "eslintConfig": {
     "extends": "react-app"
