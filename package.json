@@ -8,7 +8,7 @@
     "client": "npm start --prefix client",
     "test": "mocha --recursive --exit --timeout 10000",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "cd client/ && npm install && npm run build",
+    "build": "cd client/ && npm install && npm run build"
   },
   "homepage" : "http://hah-nan.github.io/hasocial",
   "dependencies": {
