@@ -143,6 +143,9 @@ class AutosuggestExample extends Component {
       onKeyDown: this.onKeyDown
     };
 
+    // LATER
+    return null
+
     return (
       <Autosuggest
         onKeyDown={this.handleOnKeyDown}

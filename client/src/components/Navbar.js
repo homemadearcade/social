@@ -122,6 +122,44 @@ class Navbar extends Component {
     const { user, answeringModal } = this.props;
     const { value, options, activePath } = this.state;
 
+    // LATER
+    // <Menu.Item active={activePath === "/"} as={Link} to="/">
+    //   <Icon name="home" size="big" />
+    // </Menu.Item>
+    // <Menu.Item
+    //   active={activePath.includes("/messages/")}
+    //   as={Link}
+    //   to="/messages/chat"
+    // >
+    //   <Icon name="facebook messenger" size="big" />
+    //   {user.data.messagesCount !== 0 ? (
+    //     <Label color="red" style={{ margin: 0 }}>
+    //       {user.data.messagesCount}
+    //     </Label>
+    //   ) : (
+    //     <Label color="grey" style={{ margin: 0 }}>
+    //       0
+    //     </Label>
+    //   )}
+    // </Menu.Item>
+    //
+    // <NotificationPopup>
+    //   <Menu.Item
+    //     onClick={(e) => this.handleNotificationPopupToggle(e)}
+    //   >
+    //     <Icon name="bell" size="big" />
+    //     {user.data.notificationsCount !== 0 ? (
+    //       <Label color="red" style={{ margin: 0 }}>
+    //         {user.data.notificationsCount}
+    //       </Label>
+    //     ) : (
+    //       <Label color="grey" style={{ margin: 0 }}>
+    //         0
+    //       </Label>
+    //     )}
+    //   </Menu.Item>
+    // </NotificationPopup>
+
     if (user.loadingUser) {
       return null;
     } else {
@@ -138,42 +176,6 @@ class Navbar extends Component {
               <Menu.Menu className="nav-container">
                 {/* 5 */}
                 <Menu.Menu position="right">
-                  <Menu.Item active={activePath === "/"} as={Link} to="/">
-                    <Icon name="home" size="big" />
-                  </Menu.Item>
-                  <Menu.Item
-                    active={activePath.includes("/messages/")}
-                    as={Link}
-                    to="/messages/chat"
-                  >
-                    <Icon name="facebook messenger" size="big" />
-                    {user.data.messagesCount !== 0 ? (
-                      <Label color="red" style={{ margin: 0 }}>
-                        {user.data.messagesCount}
-                      </Label>
-                    ) : (
-                      <Label color="grey" style={{ margin: 0 }}>
-                        0
-                      </Label>
-                    )}
-                  </Menu.Item>
-
-                  <NotificationPopup>
-                    <Menu.Item
-                      onClick={(e) => this.handleNotificationPopupToggle(e)}
-                    >
-                      <Icon name="bell" size="big" />
-                      {user.data.notificationsCount !== 0 ? (
-                        <Label color="red" style={{ margin: 0 }}>
-                          {user.data.notificationsCount}
-                        </Label>
-                      ) : (
-                        <Label color="grey" style={{ margin: 0 }}>
-                          0
-                        </Label>
-                      )}
-                    </Menu.Item>
-                  </NotificationPopup>
 
                   {/* 7*/}
                   <Menu.Item

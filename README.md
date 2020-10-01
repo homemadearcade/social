@@ -3,7 +3,7 @@
 1. Install dependencies
 
 ```
-npm i && cd client && npm i && cd ..
+yarn install && cd client && yarn install && cd ..
 ```
 
 2. Create variables.env file and replace values with yours
@@ -26,8 +26,10 @@ BUCKET_REGION=
 3. Run project
 
 ```
-npm run dev
+yarn dev
 ```
+
+localhost port used is :3000
 
 4. Deploy
 

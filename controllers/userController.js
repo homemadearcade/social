@@ -941,8 +941,10 @@ exports.getFollowings = (req, res, next) => {
     },
   ])
     .then((user) => {
-      req.body.followings = user[0].followings;
-      next();
+      User.find({}, function(err, users) {
+        req.body.followings = users.map(({_id}) => _id)
+        next();
+      });
     })
     .catch((err) => res.status(500).json({ message: err.message }));
 };
