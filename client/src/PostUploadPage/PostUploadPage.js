@@ -46,7 +46,7 @@ class PostUploadPage extends Component {
   };
 
   componentDidMount = () => {
-    document.title = "Upload | friends-only";
+    document.title = "Upload | Homemade Arcade";
   };
 
   handlePreviousClick = () => {

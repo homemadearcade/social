@@ -27,7 +27,7 @@ class LoginPage extends React.Component {
   }
 
   componentDidMount = () => {
-    document.title = "Login | friends-only";
+    document.title = "Login | Homemade Arcade";
   };
 
   handleChange(e) {
@@ -83,7 +83,7 @@ class LoginPage extends React.Component {
         <Message
           size="large"
           attached
-          header="friends-only"
+          header="Homemade Arcade"
           content="Fill out the form below to log-in"
         />
         <Form
@@ -192,18 +192,6 @@ class LoginPage extends React.Component {
             </Button>
           </Form>
         ) : null}
-
-        <Message>
-          <Message.Header>
-            <a
-              href="https://github.com/misa-j/friends-only"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Link to a github repo
-            </a>
-          </Message.Header>
-        </Message>
       </div>
     );
   }

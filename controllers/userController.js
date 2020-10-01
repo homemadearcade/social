@@ -120,7 +120,7 @@ exports.activate = (req, res) => {
                 color: white;
             }
         </style>
-        <title>friends-only</title>
+        <title>Homemade Arcade</title>
     </head>
 
     <body>
@@ -156,7 +156,7 @@ exports.activate = (req, res) => {
                       color: white;
                   }
               </style>
-              <title>friends-only</title>
+              <title>Homemade Arcade</title>
           </head>
 
           <body>
@@ -186,7 +186,7 @@ exports.activate = (req, res) => {
                       color: white;
                   }
               </style>
-              <title>friends-only</title>
+              <title>Homemade Arcade</title>
           </head>
 
           <body>
@@ -215,7 +215,7 @@ exports.activate = (req, res) => {
                   color: white;
               }
           </style>
-          <title>friends-only</title>
+          <title>Homemade Arcade</title>
       </head>
 
       <body>

@@ -44,7 +44,7 @@ const linkifyOptions = {
 
 class ProfilePage extends Component {
   componentDidMount = () => {
-    document.title = "Profile | friends-only";
+    document.title = "Profile | Homemade Arcade";
   };
 
   fetchData = () => {

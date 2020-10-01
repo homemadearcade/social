@@ -5,7 +5,7 @@ import { NewUsersList } from "../components/NewUsersLIst";
 
 class HomePage extends Component {
   componentDidMount = () => {
-    document.title = "friends-only";
+    document.title = "Homemade Arcade";
   };
 
   render() {

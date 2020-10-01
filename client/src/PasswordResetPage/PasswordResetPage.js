@@ -13,7 +13,7 @@ class PasswordResetPage extends Component {
   };
 
   componentDidMount = () => {
-    document.title = "Password reset | friends-only";
+    document.title = "Password reset | Homemade Arcade";
     this.setState({ jwt: this.props.match.params.jwt });
   };
 

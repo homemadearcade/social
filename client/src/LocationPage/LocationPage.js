@@ -22,7 +22,7 @@ class LocationPage extends Component {
         })
       );
     }
-    document.title = "Location Page | friends-only";
+    document.title = "Location Page | Homemade Arcade";
   };
 
   fetchData = () => {

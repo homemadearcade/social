@@ -282,7 +282,7 @@ function getUserProfileData(username) {
         if (response.user.loggedInUser) {
           return history.push("/profile");
         }
-        document.title = "@" + response.user.username + " | friends-only";
+        document.title = "@" + response.user.username + " | Homemade Arcade";
         dispatch(success(response));
         response.user.posts &&
           response.user.posts.forEach((post) =>

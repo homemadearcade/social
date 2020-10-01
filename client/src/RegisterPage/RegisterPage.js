@@ -27,7 +27,7 @@ class RegisterPage extends React.Component {
   }
 
   componentDidMount = () => {
-    document.title = "Register | friends-only";
+    document.title = "Register | Homemade Arcade";
   };
 
   handleChange = event => {
@@ -89,7 +89,7 @@ class RegisterPage extends React.Component {
         <Message
           size="large"
           attached
-          header="friends-only"
+          header="Homemade Arcade"
           content="Fill out the form below to sign-up for a new account. (Do not use real credentials)"
         />
         <Form

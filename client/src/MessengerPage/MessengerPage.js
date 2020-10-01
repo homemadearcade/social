@@ -7,7 +7,7 @@ import { MessengerContent } from "./MessengerContent";
 
 class MessengerPage extends Component {
   componentDidMount = () => {
-    document.title = "Messages | friends-only";
+    document.title = "Messages | Homemade Arcade";
   };
 
   render() {
