@@ -10,6 +10,13 @@ router.post(
 );
 
 router.post(
+  "/getGameSave/",
+  checkAuth,
+  gameController.getGameSave
+);
+
+
+router.post(
   "/addGameSave/",
   checkAuth,
   gameController.addGameSave

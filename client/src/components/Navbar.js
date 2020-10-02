@@ -143,22 +143,6 @@ class Navbar extends Component {
     //   )}
     // </Menu.Item>
     //
-    // <NotificationPopup>
-    //   <Menu.Item
-    //     onClick={(e) => this.handleNotificationPopupToggle(e)}
-    //   >
-    //     <Icon name="bell" size="big" />
-    //     {user.data.notificationsCount !== 0 ? (
-    //       <Label color="red" style={{ margin: 0 }}>
-    //         {user.data.notificationsCount}
-    //       </Label>
-    //     ) : (
-    //       <Label color="grey" style={{ margin: 0 }}>
-    //         0
-    //       </Label>
-    //     )}
-    //   </Menu.Item>
-    // </NotificationPopup>
 
     if (user.loadingUser) {
       return null;
@@ -176,7 +160,22 @@ class Navbar extends Component {
               <Menu.Menu className="nav-container">
                 {/* 5 */}
                 <Menu.Menu position="right">
-
+                  <NotificationPopup>
+                    <Menu.Item
+                      onClick={(e) => this.handleNotificationPopupToggle(e)}
+                    >
+                      <Icon name="bell" size="big" />
+                      {user.data.notificationsCount !== 0 ? (
+                        <Label color="red" style={{ margin: 0 }}>
+                          {user.data.notificationsCount}
+                        </Label>
+                      ) : (
+                        <Label color="grey" style={{ margin: 0 }}>
+                          0
+                        </Label>
+                      )}
+                    </Menu.Item>
+                  </NotificationPopup>
                   {/* 7*/}
                   <Menu.Item
                     active={activePath === "/profile"}

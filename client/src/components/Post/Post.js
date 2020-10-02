@@ -129,19 +129,6 @@ class Post extends Component {
       showTags
     } = this.state;
 
-    console.log(this.state.isGameModalOpen)
-
-    // LATER
-    // <Link
-    //   to={
-    //     post.author[0].username === username
-    //       ? "/profile"
-    //       : "/" + post.author[0].username
-    //   }
-    // >
-    //
-    // </Link>
-    //
     const isFeedMarginBottom = post.feed ? "5rem" : "0";
     const renderDivs = post.tags.map(div => (
       <div
@@ -188,7 +175,15 @@ class Post extends Component {
             </div>
             <div className="label-info">
               <div className="label-username">
+                <Link
+                  to={
+                    post.author[0].username === username
+                      ? "/profile"
+                      : "/" + post.author[0].username
+                  }
+                >
                 {post.author[0].username}
+                </Link>
               </div>
               <div className="label-time">
                 {dayjs(post.createdAt).fromNow()}
@@ -199,7 +194,6 @@ class Post extends Component {
                 <Link
                   to={`/location/${post.location.coordinates[0]},${post.location.coordinates[1]}`}
                 >
-                  {console.log(post.location.address)}
                   {post.location.address}
                 </Link>
               </div>
@@ -255,7 +249,7 @@ class Post extends Component {
         <div className="post-image">
           <a
             onClick={() => {
-              window.open(window.HAGameClientUrl + '/?arcadeMode=true&gameId=' + post.gameId)
+              window.open(window.HAGameClientUrl + '/?arcadeMode=true&gameSaveId=' + post.gameSaveId)
             }}
           >
           <PlayableImage
