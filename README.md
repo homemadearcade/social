@@ -26,10 +26,10 @@ BUCKET_REGION=
 3. Run project
 
 ```
-yarn dev
+yarn server && yarn client-dev
 ```
 
-localhost port used is :3000
+localhost port used is :3005
 
 4. Deploy
 

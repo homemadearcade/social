@@ -42,7 +42,6 @@ class App extends React.Component {
 
   render() {
     const { authentication } = this.props;
-
     return (
       <div onClick={this.handleNotificationPopupClose}>
         <Router history={history}>
@@ -51,8 +50,14 @@ class App extends React.Component {
               {authentication.loggedIn ? <Navbar /> : null}
               <Switch>
                 <PrivateRoute exact path="/" component={HomePage} />
-                <Route exact path="/login" render={() => <LoginPage />} />
-                <Route exact path="/register" render={() => <RegisterPage />} />
+                <Route exact path="/login" render={() => {
+                    document.body.style = "background: black !important;"
+                    return <LoginPage />
+                  }} />
+                <Route exact path="/register" render={() => {
+                  document.body.style = "background: black !important;"
+                    return <RegisterPage />
+                  }} />
                 <PrivateRoute exact path="/profile" component={ProfilePage} />
                 <PrivateRoute
                   exact

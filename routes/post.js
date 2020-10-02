@@ -37,7 +37,7 @@ router.post(
 router.post(
   "/addPost",
   checkAuth,
-  postController.upload,
+  // postController.upload,
   postValidator.createPost,
   postController.createPost
 );

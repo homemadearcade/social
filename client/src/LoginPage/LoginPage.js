@@ -79,7 +79,7 @@ class LoginPage extends React.Component {
       forgotPasswordForm,
     } = this.state;
     return (
-      <div className="form-centered">
+      <div className="AuthenticationForm form-centered">
         <Message
           size="large"
           attached

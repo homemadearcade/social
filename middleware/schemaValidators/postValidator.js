@@ -116,18 +116,18 @@ exports.createPost = (req, res, next) => {
       .allow("")
       .required(),
     tags: Joi.array().required(),
-    coordinates: Joi.string()
-      .allow("")
-      .required(),
-    locationName: Joi.string()
-      .allow("")
-      .required(),
+    // coordinates: Joi.string()
+    //   .allow("")
+    //   .required(),
+    // locationName: Joi.string()
+    //   .allow("")
+    //   .required(),
     photo: Joi.string().required()
   });
 
-  const { error, value } = schema.validate(validateObject);
-  if (error) {
-    return res.status(400).json({ message: error.message });
-  }
+  // const { error, value } = schema.validate(validateObject);
+  // if (error) {
+  //   return res.status(400).json({ message: error.message });
+  // }
   next();
 };

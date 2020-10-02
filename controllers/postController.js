@@ -103,8 +103,7 @@ exports.upload = async (req, res, next) => {
   upload(req, res, (err) => {
     if (err) return res.status(400).json({ message: err.message });
 
-    if (!req.file)
-      return res.status(400).json({ message: "Please upload a file" });
+    if (!req.file) next()
 
     req.body.photo = req.file.location
     next();
@@ -141,6 +140,7 @@ exports.getPosts = (req, res) => {
                 comments: {
                   $size: "$comments",
                 },
+                gameId: 1,
                 description: 1,
                 "author._id": 1,
                 "author.username": 1,
@@ -185,6 +185,7 @@ exports.getPosts = (req, res) => {
           tags: 1,
           hashtags: 1,
           location: 1,
+          gameId: 1,
           likes: {
             $size: { $arrayElemAt: ["$likes.users_likes", 0] },
           },
@@ -244,6 +245,7 @@ exports.getPostsByHashtag = (req, res) => {
                 comments: {
                   $size: "$comments",
                 },
+                gameId: 1,
                 description: 1,
                 "author._id": 1,
                 "author.username": 1,
@@ -473,6 +475,7 @@ exports.createPost = (req, res) => {
   const uniqueUsernames = [...new Set([...mentions, ...tags])];
 
   let newPost;
+  console.log(req.body, req.body.gameId)
   if (req.body.coordinates) {
     const coordinates = req.body.coordinates
       .split(",")
@@ -487,6 +490,7 @@ exports.createPost = (req, res) => {
         coordinates: coordinates,
         address: req.body.locationName,
       },
+      gameId: req.body.gameId,
       tags: JSON.parse(req.body.tags),
     });
   } else {
@@ -495,7 +499,7 @@ exports.createPost = (req, res) => {
       description: req.body.description,
       photo: req.body.photo,
       hashtags: [...new Set(hashtags)], // remove duplicates
-
+      gameId: req.body.gameId,
       tags: JSON.parse(req.body.tags),
     });
   }

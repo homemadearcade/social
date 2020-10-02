@@ -33,6 +33,9 @@ const postSchema = new mongoose.Schema({
       type: String
     }
   },
+  gameId: {
+    type: String,
+  },
   tags: {
     type: Array,
     default: []

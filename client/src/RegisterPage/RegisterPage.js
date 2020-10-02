@@ -85,12 +85,12 @@ class RegisterPage extends React.Component {
     const { registering, alert } = this.props;
     const { user, submitted, retTypePasswordError } = this.state;
     return (
-      <div className="form-centered">
+      <div className="AuthenticationForm form-centered">
         <Message
           size="large"
           attached
           header="Homemade Arcade"
-          content="Fill out the form below to sign-up for a new account. (Do not use real credentials)"
+          content="Fill out the form below to sign-up for a new account."
         />
         <Form
           className="attached fluid segment"

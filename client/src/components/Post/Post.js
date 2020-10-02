@@ -21,6 +21,8 @@ import mention from "linkifyjs/plugins/mention";
 import { history } from "../../_helpers/history";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import PlayableImage from '../PlayableImage';
+import GameModal from '../Modal';
 
 dayjs.extend(relativeTime);
 
@@ -50,6 +52,7 @@ class Post extends Component {
     loadedImg: false,
     value: "",
     showTags: false,
+    isGameModalOpen: false,
     optionsLoggedIn: [
       { key: "copy", icon: "copy", text: "Copy link", value: "copy" },
       {
@@ -126,6 +129,19 @@ class Post extends Component {
       showTags
     } = this.state;
 
+    console.log(this.state.isGameModalOpen)
+
+    // LATER
+    // <Link
+    //   to={
+    //     post.author[0].username === username
+    //       ? "/profile"
+    //       : "/" + post.author[0].username
+    //   }
+    // >
+    //
+    // </Link>
+    //
     const isFeedMarginBottom = post.feed ? "5rem" : "0";
     const renderDivs = post.tags.map(div => (
       <div
@@ -172,15 +188,7 @@ class Post extends Component {
             </div>
             <div className="label-info">
               <div className="label-username">
-                <Link
-                  to={
-                    post.author[0].username === username
-                      ? "/profile"
-                      : "/" + post.author[0].username
-                  }
-                >
-                  {post.author[0].username}
-                </Link>
+                {post.author[0].username}
               </div>
               <div className="label-time">
                 {dayjs(post.createdAt).fromNow()}
@@ -191,6 +199,7 @@ class Post extends Component {
                 <Link
                   to={`/location/${post.location.coordinates[0]},${post.location.coordinates[1]}`}
                 >
+                  {console.log(post.location.address)}
                   {post.location.address}
                 </Link>
               </div>
@@ -244,18 +253,17 @@ class Post extends Component {
         </div>
 
         <div className="post-image">
-          {this.state.loadedImg ? null : (
-            <Segment loading>
-              <Image src={post.photo} />
-            </Segment>
-          )}
-          <img
-            onClick={this.handleToggleTags}
-            onLoad={() => this.setState({ loadedImg: true })}
-            style={this.state.loadedImg ? {} : { display: "none" }}
-            src={ post.photo}
-            alt=""
-          />
+          <a
+            onClick={() => {
+              window.open(window.HAGameClientUrl + '/?arcadeMode=true&gameId=' + post.gameId)
+            }}
+          >
+          <PlayableImage
+            src={post.photo}
+            alt="Features split 01"
+            width={665}
+            height={332.5} />
+          </a>
           {ribbon}
           {renderDivs}
         </div>

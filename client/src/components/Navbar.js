@@ -166,7 +166,7 @@ class Navbar extends Component {
       return (
         <div className="main-navbar">
           <div className="nav-item logo">
-            <Link to={"/"}>HOMEMADE ARCADE</Link>
+            <Link className="LogoTitle" to={"/"}>HOMEMADE ARCADE</Link>
           </div>
           <div className="nav-item search-bar">
             <AutosuggestExample />

@@ -32,17 +32,22 @@ function login(email, password) {
 }
 
 function getNewUsers(params) {
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ ...params }),
-  };
+  try {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...params }),
+    };
 
-  return fetch("/api/user/getNewUsers", requestOptions)
-    .then(handleResponse)
-    .then((res) => {
-      return res;
-    });
+    return fetch("/api/user/getNewUsers", requestOptions)
+      .then(handleResponse)
+      .then((res) => {
+        return res;
+      });
+  } catch(e) {
+    console.error(e)
+  }
+
 }
 
 function resetPassword(data) {
@@ -98,19 +103,24 @@ function register(user) {
 }
 
 function getUserData(queryParams) {
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      Authorization: JSON.parse(localStorage.getItem("user")).token,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ ...queryParams }),
-  };
-  return fetch("/api/user/getUserData", requestOptions)
-    .then(handleResponse)
-    .then((res) => {
-      return res;
-    });
+  try {
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        Authorization: JSON.parse(localStorage.getItem("user")).token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...queryParams }),
+    };
+    return fetch("/api/user/getUserData", requestOptions)
+      .then(handleResponse)
+      .then((res) => {
+        return res;
+      });
+  } catch(e) {
+    console.error(e)
+  }
+
 }
 
 function getPosts(queryParams) {

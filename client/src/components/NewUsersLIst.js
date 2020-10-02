@@ -31,6 +31,10 @@ class NewUsersList extends Component {
   render() {
     const { newUsers, username } = this.props;
 
+    // LATER
+    // as={Link}
+    // to={user.username === username ? "/profile" : "/" + user.username}
+
     const users = newUsers.users.map(user => {
       return (
         <List.Item key={user._id}>
@@ -40,9 +44,7 @@ class NewUsersList extends Component {
           />
           <List.Content>
             <List.Header
-              as={Link}
-              to={user.username === username ? "/profile" : "/" + user.username}
-            >
+              >
               {user.username}
             </List.Header>
 

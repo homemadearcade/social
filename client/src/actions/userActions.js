@@ -160,22 +160,18 @@ function register(user) {
 }
 
 function getUserData(queryParams) {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(request());
 
-    userService.getUserData(queryParams).then(
-      (res) => {
-        res.user.posts &&
-          res.user.posts.forEach((post) =>
-            dispatch({ type: postConstants.INIT_COMMENT, postId: post._id })
-          );
-        dispatch(success(res.user));
-      },
-      (error) => {
-        dispatch(failure(error.toString()));
-        dispatch(alertActions.error(error.toString()));
-      }
-    );
+    const data = await userService.getUserData(queryParams)
+
+    if(data) {
+      data.user.posts &&
+        data.user.posts.forEach((post) =>
+          dispatch({ type: postConstants.INIT_COMMENT, postId: post._id })
+        );
+      dispatch(success(data.user));
+    }
   };
 
   function request() {

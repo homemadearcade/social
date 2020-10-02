@@ -9,6 +9,8 @@ class HomePage extends Component {
   };
 
   render() {
+    document.body.style = "background: #eee !important;"
+
     return (
       <div className="container" id="homepage-container">
         <div id="left-container" className="section">
