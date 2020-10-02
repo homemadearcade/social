@@ -38,6 +38,7 @@ require("./models/Followers");
 require("./models/Notification");
 require("./models/ChatRoom");
 require("./models/Message");
+require("./models/GameSave");
 
 const app = express();
 const io = socket_io();
@@ -91,6 +92,7 @@ const usersRouter = require("./routes/user");
 const commentsRouter = require("./routes/comment");
 const notificationRouter = require("./routes/notification");
 const chatRouter = require("./routes/chat");
+const gameRouter = require("./routes/game");
 
 app.use(helmet());
 if (process.env.NODE_ENV === "production") {
@@ -122,6 +124,7 @@ app.use("/api/user/", usersRouter);
 app.use("/api/comment/", commentsRouter);
 app.use("/api/notification/", notificationRouter);
 app.use("/api/chat/", chatRouter);
+app.use("/api/game/", gameRouter);
 
 app.get("/auth/reset/password/:jwt", function (req, res) {
   return res.status(404).json({ message: "go to port 3000" });
