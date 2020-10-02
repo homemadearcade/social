@@ -483,6 +483,8 @@ exports.getUserData = (req, res, next) => {
           username: 1,
           email: 1,
           bio: 1,
+          gameSaveId: 1,
+          gameId: 1,
           profilePicture: 1,
           followings: {
             $size: { $arrayElemAt: ["$followings.following", 0] },
@@ -878,6 +880,8 @@ exports.getUserPosts = (req, res, next) => {
           createdAt: 1,
           tags: 1,
           location: 1,
+          gameId: 1,
+          gameSaveId: 1,
           likes: {
             $size: { $arrayElemAt: ["$likes.users_likes", 0] },
           },

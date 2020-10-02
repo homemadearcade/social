@@ -68,6 +68,7 @@ class ProfilePage extends Component {
     const hasMore =
       user.data.postsCount === user.data.posts.length ? false : true;
     const posts = user.data.posts.map(post => {
+      console.log(post)
       return (
         <Modal
           key={post._id}
@@ -128,7 +129,18 @@ class ProfilePage extends Component {
           ></FollowingFollowerList>
         ))
       : "No followers";
-
+                          // LATER
+                          // <Button
+                          //   as={Link}
+                          //   to="/posts/upload"
+                          //   className="profile-edit-btn"
+                          //   size="large"
+                          //   icon
+                          //   labelPosition="right"
+                          // >
+                          //   Add post
+                          //   <Icon name="upload" />
+                          // </Button>
     return (
       <div className="main">
         {user.loadingUser ? (
@@ -157,17 +169,6 @@ class ProfilePage extends Component {
                   <div className="profile-user-settings">
                     <h1 className="profile-user-name">{user.data.username}</h1>
 
-                    <Button
-                      as={Link}
-                      to="/posts/upload"
-                      className="profile-edit-btn"
-                      size="large"
-                      icon
-                      labelPosition="right"
-                    >
-                      Add post
-                      <Icon name="upload" />
-                    </Button>
                     <EditProfileModal>
                       <Button
                         className="profile-edit-btn"
@@ -245,17 +246,17 @@ class ProfilePage extends Component {
               <div className="container">
                 {user.data.postsCount === 0 ? (
                   <Message info size="large">
-                    You have no posts. Share your first picture:{" "}
+                    You have no games. Make your first game
                     <Button
                       as={Link}
-                      to="/posts/upload"
-                      className="profile-edit-btn"
+                      onClick={() => {
+                        window.open(window.HAGameClientUrl + '?homeEditor=true')
+                      }}
                       size="large"
                       icon
                       labelPosition="right"
                     >
-                      Add post
-                      <Icon name="upload" />
+                      Start Editing
                     </Button>
                   </Message>
                 ) : (

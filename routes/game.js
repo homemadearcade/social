@@ -11,7 +11,7 @@ router.post(
 
 router.post(
   "/getGameSave/",
-  checkAuth,
+  // checkAuth,
   gameController.getGameSave
 );
 

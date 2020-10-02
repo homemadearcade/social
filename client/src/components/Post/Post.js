@@ -54,6 +54,7 @@ class Post extends Component {
     showTags: false,
     isGameModalOpen: false,
     optionsLoggedIn: [
+      { key: "edit", icon: "edit", text: "Open Editor", value: "edit" },
       { key: "copy", icon: "copy", text: "Copy link", value: "copy" },
       {
         key: "goto",
@@ -64,6 +65,7 @@ class Post extends Component {
       { key: "delete", icon: "delete", text: "Delete", value: "delete" }
     ],
     optionsNotLoggedIn: [
+      { key: "edit", icon: "edit", text: "Open Editor", value: "edit" },
       { key: "copy", icon: "copy", text: "Copy link", value: "copy" },
       {
         key: "goto",
@@ -112,6 +114,9 @@ class Post extends Component {
       navigator.clipboard.writeText(
         window.location.host + "/p/" + this.props.post._id
       );
+    }
+    if (value === "edit") {
+      window.open(window.HAGameClientUrl + '/?homeEditor=true&gameSaveId=' + this.props.post.gameSaveId)
     }
   };
 

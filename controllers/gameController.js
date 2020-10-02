@@ -43,7 +43,6 @@ exports.getGameSavesForUser = (req, res) => {
     {
       $project: {
         data: 1,
-        gameSaveId: 1,
         createdAt: 1,
         "author._id": 1,
         "author.firstName": 1,
@@ -77,13 +76,14 @@ exports.getGameSave = (req, res, next) => {
     {
       $project: {
         data: 1,
-        gameId: 1,
         createdAt: 1,
       },
     },
   ];
 
-  const gameSave = GameSave.aggregate(q);
-
-  res.state(200).json({ gameSave: gameSave })
+  GameSave.findOne({ _id: mongoose.Types.ObjectId(req.body.gameSaveId) })
+    .select("data")
+    .then(({ data }) => {
+      res.status(200).json({ gameSave: data })
+    });
 };

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Menu, Icon, Image, Dropdown, Label } from "semantic-ui-react";
+import { Menu, Icon, Image, Dropdown, Label, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { history } from "../_helpers/history";
 import { notificationActions } from "../actions/notificationActions";
@@ -160,6 +160,11 @@ class Navbar extends Component {
               <Menu.Menu className="nav-container">
                 {/* 5 */}
                 <Menu.Menu position="right">
+                  <Menu.Item
+                    onClick={(e) => window.open(window.HAGameClientUrl + '/?homeEditor=true')}
+                  >
+                    Open Editor
+                  </Menu.Item>
                   <NotificationPopup>
                     <Menu.Item
                       onClick={(e) => this.handleNotificationPopupToggle(e)}
