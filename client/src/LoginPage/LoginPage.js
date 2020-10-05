@@ -78,6 +78,38 @@ class LoginPage extends React.Component {
       showForm,
       forgotPasswordForm,
     } = this.state;
+
+    // <Message size="large" attached="bottom" warning>
+    //   <Icon name="help" />
+    //   Don't have an account?&nbsp;
+    //   <Link to={"/register"}>Create one now</Link>
+    //   <br></br>
+    //   <Icon name="help" />
+    //   Forgot password?&nbsp;
+    //   <span
+    //     onClick={this.toggleForgotPasswordForm}
+    //     style={{
+    //       textDecoration: "underline",
+    //       fontWeight: "900",
+    //       cursor: "pointer",
+    //     }}
+    //   >
+    //     reset password
+    //   </span>
+    //   <br></br>
+    //   <Icon name="envelope" />
+    //   Resend verification email.&nbsp;
+    //   <span
+    //     onClick={this.toggleEmailVerification}
+    //     style={{
+    //       textDecoration: "underline",
+    //       fontWeight: "900",
+    //       cursor: "pointer",
+    //     }}
+    //   >
+    //     resend
+    //   </span>
+    // </Message>
     return (
       <div className="AuthenticationForm form-centered">
         <Message
@@ -127,37 +159,7 @@ class LoginPage extends React.Component {
 
           {alert.type ? <Messages alert={alert} /> : null}
         </Form>
-        <Message size="large" attached="bottom" warning>
-          <Icon name="help" />
-          Don't have an account?&nbsp;
-          <Link to={"/register"}>Create one now</Link>
-          <br></br>
-          <Icon name="help" />
-          Forgot password?&nbsp;
-          <span
-            onClick={this.toggleForgotPasswordForm}
-            style={{
-              textDecoration: "underline",
-              fontWeight: "900",
-              cursor: "pointer",
-            }}
-          >
-            reset password
-          </span>
-          <br></br>
-          <Icon name="envelope" />
-          Resend verification email.&nbsp;
-          <span
-            onClick={this.toggleEmailVerification}
-            style={{
-              textDecoration: "underline",
-              fontWeight: "900",
-              cursor: "pointer",
-            }}
-          >
-            resend
-          </span>
-        </Message>
+
         {showForm ? (
           <Form className="segment" size="large" name="form">
             <Form.Field>
