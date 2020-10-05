@@ -159,7 +159,11 @@ class LoginPage extends React.Component {
 
           {alert.type ? <Messages alert={alert} /> : null}
         </Form>
-
+        <Message size="large" attached="bottom" warning>
+          <Icon name="help" />
+          Don't have an account?&nbsp;
+          <Link to={"/register"}>Create one now</Link>
+        </Message>
         {showForm ? (
           <Form className="segment" size="large" name="form">
             <Form.Field>
