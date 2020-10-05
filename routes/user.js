@@ -34,8 +34,8 @@ router.get("/email/activate/:token", userController.activate);
 
 router.post(
   "/sendVerificationEmail",
-  checkEmailEnv,
-  userValidator.sendVerificationEmail,
+  // checkEmailEnv,
+  // userValidator.sendVerificationEmail,
   userController.sendVerificationEmail
 );
 

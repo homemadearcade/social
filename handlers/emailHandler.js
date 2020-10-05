@@ -16,7 +16,7 @@ exports.sendVerificationEmail = (data) => {
   // config for mailserver and mail, input your data
   const config = {
     mailserver: {
-      service: "gmail",
+      service: "sendgrid",
       auth: {
         user: process.env.EMAILUSER,
         pass: process.env.EMAILPASS,
@@ -60,7 +60,6 @@ exports.sendVerificationEmail = (data) => {
 
 exports.sendPasswordResetEmail = (data) => {
   const { email, _id, username } = data;
-  console.log("sending email");
   const token = jwt.sign(
     {
       email,

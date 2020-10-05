@@ -85,7 +85,7 @@ const UserSchema = new mongoose.Schema({
   },
   activated: {
     type: Boolean,
-    default: process.env.ENABLE_SEND_EMAIL === "true" ? false : true,
+    default: process.env.ENABLE_SEND_EMAIL === true ? false : true,
   },
   postLikes: [postLikeSchema],
   commentLikes: [commentLikeSchema],

@@ -65,7 +65,7 @@ class Post extends Component {
       { key: "delete", icon: "delete", text: "Delete", value: "delete" }
     ],
     optionsNotLoggedIn: [
-      { key: "edit", icon: "edit", text: "Open Editor", value: "edit" },
+      // { key: "edit", icon: "edit", text: "Open Editor", value: "edit" },
       { key: "copy", icon: "copy", text: "Copy link", value: "copy" },
       {
         key: "goto",

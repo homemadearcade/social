@@ -84,6 +84,7 @@ exports.getNewUsers = (req, res, next) => {
 };
 
 exports.sendVerificationEmail = (req, res, next) => {
+  console.log('x', req.body)
   const schema = Joi.object({
     email: Joi.string()
       .pattern(
@@ -98,6 +99,7 @@ exports.sendVerificationEmail = (req, res, next) => {
   if (error) {
     return res.status(400).json({ message: error.message });
   }
+
   next();
 };
 
