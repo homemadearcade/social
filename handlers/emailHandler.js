@@ -75,7 +75,7 @@ exports.sendPasswordResetEmail = (data) => {
   // config for mailserver and mail, input your data
   const config = {
     mailserver: {
-      service: "gmail",
+      service: "yahoo",
       auth: {
         user: process.env.EMAILUSER,
         pass: process.env.EMAILPASS,
