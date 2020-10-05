@@ -17,7 +17,10 @@ exports.sendVerificationEmail = (data) => {
   // config for mailserver and mail, input your data
   const config = {
     mailserver: {
-      service: "yahoo",
+      // host: 'smtp.gmail.com',
+      // port: 465,
+      // secure: true,
+      service: "gmail",
       auth: {
         user: process.env.EMAILUSER,
         pass: process.env.EMAILPASS,
@@ -75,7 +78,10 @@ exports.sendPasswordResetEmail = (data) => {
   // config for mailserver and mail, input your data
   const config = {
     mailserver: {
-      service: "yahoo",
+      // host: 'smtp.gmail.com',
+      // port: 465,
+      // secure: true,
+      service: "gmail",
       auth: {
         user: process.env.EMAILUSER,
         pass: process.env.EMAILPASS,
