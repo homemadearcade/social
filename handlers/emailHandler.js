@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const hbs = require("nodemailer-express-handlebars");
+const sgTransport = require('nodemailer-sendgrid-transport');
 
 exports.sendVerificationEmail = (data) => {
   const { email, _id, username } = data;
@@ -16,7 +17,7 @@ exports.sendVerificationEmail = (data) => {
   // config for mailserver and mail, input your data
   const config = {
     mailserver: {
-      service: "sendgrid",
+      service: "yahoo",
       auth: {
         user: process.env.EMAILUSER,
         pass: process.env.EMAILPASS,
